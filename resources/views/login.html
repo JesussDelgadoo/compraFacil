@@ -12,9 +12,31 @@
         <section class="card">
             <header class="card__header">
                 <div class="brand">
-                    
+                    <div class="brand__mark">CF</div>
+                    <div class="brand__text">
+                        <div class="brand__name">compraFacil</div>
+                        <div class="brand__tag">Acceso al sistema</div>
+                    </div>
                 </div>
             </header>
+
+            <form id="loginForm" class="form" novalidate>
+                <div class="field">
+                    <label for="usuario" class="field__label">Usuario</label>
+                    <input id="usuario" class="field__input" type="text" autocomplete="username" placeholder="Ej. admin" required>
+                </div>
+
+                <div class="field">
+                    <label for="contrasena" class="field__label">Contraseña</label>
+                    <input id="contrasena" class="field__input" type="password" autocomplete="current-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn--primary"></button>
+                <p id="msg" class="msg" aria-live="polite"></p>
+            </form>
+
+            <footer class="card__footer">
+                <small><span id="year"></span>compraFacil</small>
+            </footer>
         </section>
     </main>
 
