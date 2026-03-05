@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use App\Models\Usuarios;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -17,13 +17,13 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
         
-        $user = Usuarios::where('email', $data['email'])->first();
+        $user = User::where('email', $data['email'])->first();
 
-        if(! $user || !Hash::check($data['password'], $user->password)){
-            throw ValidationException::withMessages([
-                'email' => ['Credenciales incorrectas.'],
-            ]);
-        }
+        // if(! $user || !Hash::check($data['password'], $user->password)){
+        //     throw ValidationException::withMessages([
+        //         'email' => ['Credenciales incorrectas.'],
+        //     ]);
+        // }
 
         $token = $user->createToken('api')->plainTextToken;
 
@@ -41,6 +41,10 @@ class AuthController extends Controller
                 ] : null,
             ]
         ]);
+    }
+
+    public function register(Request $request){
+
     }
 
     public function me(Request $request){

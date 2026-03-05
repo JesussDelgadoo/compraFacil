@@ -30,15 +30,19 @@
                     <label for="contrasena" class="field__label">Contraseña</label>
                     <input id="contrasena" class="field__input" type="password" autocomplete="current-password" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn btn--primary"></button>
+                <button type="submit" class="btn btn--primary">Entrar</button>
                 <p id="msg" class="msg" aria-live="polite"></p>
             </form>
 
             <footer class="card__footer">
-                <small><span id="year"></span>compraFacil</small>
+                <small>©<span id="year"></span> compraFacil</small>
             </footer>
         </section>
     </main>
 
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="/js/login.js"></script>
 </body>
 </html>
