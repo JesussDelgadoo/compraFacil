@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Panel - compraFacil</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <div class="topbar">
+        <h2>Panel principal</h2>
+        <button id="logoutBtn" class="danger" type="button">Cerrar sesión</button>
+    </div>
+
+    <div class="card">  
+        <p class="msg" id="status">Cargando usuario...</p>
+        <div class="grid">
+            <a class="tile" href="/usarios.html" id="btnUsuarios">Usuarios</a>
+            <a class="tile" href="/empleados.html" id="btnEmpleados">Empleados</a>
+            <a class="tile" href="/productos.html" id="btnProductos">Productos</a>
+            <a class="tile" href="/requisiciones.html" id="btnRequisiciones">Requisiciones</a>
+        </div>
+    </div>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

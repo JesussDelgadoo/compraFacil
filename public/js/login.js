@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 body: JSON.stringify({ email:usuario, password:contrasena})
             });
         
-            const data = await rest.json();
+            const data = await res.json();
 
             if (!res.ok) {
                 msg.textContent = data?.message || 'Error al iniciar sesión.';
