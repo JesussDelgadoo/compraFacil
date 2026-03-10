@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Usuarios | compraFacil</title>
+    <link rel="stylesheet" href="/css/usuarios.css">
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div>
+                <h2>Módulo Usuarios</h2>
+                <p class="subtitle">Listado de usuarios registrados</p>
+            </div>
+            <div class="topbar-actiones">
+                <a class="btn" href="/dashboard.html">Volver</a>
+                <a class="btn btn-primary" href="/usuarios-form.html">+ Nuevo Usuario</a>
+                <button id="logoutBtn" class="btn btn-danger" type="button">Cerrar Sesión</button>
+            </div>
+        </div>
+        <section class="card">
+            <div class="card-body">
+                <div class="toolbar">
+                    <input id="search" class="input" type="text" placeholder="Buscar por usuario, rol o empleado..."/>
+                    <button id="refreshBtn" class="btn">Actualizar</button>
+                </div>
+
+                <p id="status" class="status">Cargando...</p>
+
+                <div class="table-warp">
+                    <table class="table" id="userTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Usuario</th>
+                                <th>Rol</th>
+                                <th>Empleado</th>
+                                <th>Departamento</th>
+                                <th style="width:260px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="/js/usuarios.js"></script>
+</body>
+</html>

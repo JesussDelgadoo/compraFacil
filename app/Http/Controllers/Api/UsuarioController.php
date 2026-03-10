@@ -64,4 +64,21 @@ class UsuarioController extends Controller
         $usuario->delete();
         return response()->noContent();
     }
+
+    /*Funcion para ejecutar una contraseña que no esta encriptada*/
+    public function rehashPassword(Request $request, Usuarios $usuario)
+    {
+        $data = $request->validate([
+            'contrasena' => ['required', 'string', 'min:6'],
+        ]);
+
+        $usuario->contrasena = Hash::make($data['contrasena']);
+        $usuario->save();
+
+        return response()-> json([
+            'message' => 'Contraseña actualizada (hasheada) correctamente.',
+            'id' => $usuario->id,
+            'usuario' => $usuario->usuario,
+        ]);
+    }
 }

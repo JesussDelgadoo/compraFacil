@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('id_rol')->constrained('roles')->cascadeOnUpdate()->restrictOnDelete();
+            $table->id('id_usuario');
+            $table->foreignId('id_rol')->constrained('roles', 'id_rol')->cascadeOnUpdate()->restrictOnDelete();
             $table->string('nombre_completo',100)->unique();
             $table->string('email',100);
             $table->string('password',100);
-            $table->foreingId('id_departamento')->constrained('departamentos', 'id_departamento')->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId('id_departamento')->constrained('departamentos', 'id_departamento')->cascadeOnUpdate()->restrictOnDelete();
             $table->timestamps();
         });
     }

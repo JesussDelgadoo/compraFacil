@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
+    // Opcional: Validar token y mostrar quien esta logueado usando /api/me
     try {
         const res = await fetch('/api/me', {
             headers: {
@@ -25,8 +26,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const me = await res.json();
     // Ajusta según lo que devuelva tu /api/me
     const nombre = me?.empleado
-      ? `${me.empleado.nombre} ${me.empleado.ap} ${me.empleado.am}`
-      : (me?.usuario ?? 'Usuario');
+        ? `${me.usuario.nombre_completo}`
+        : (me?.usuario ?? 'Usuario');
 
     status.textContent = `Bienvenido/a: ${nombre}`;
 
