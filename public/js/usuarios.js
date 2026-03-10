@@ -1,5 +1,3 @@
-const { act } = require("react");
-
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -9,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const status = document.getElementById('status');
     const tbody = document.querySelector('#userTable tbody');
-    const refreshBtn = document.getElementById('regreshBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
     const logoutBtn = document.getElementById('logoutBtn');
     const search = document.getElementById('search');
 
@@ -21,21 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function render(list) {
         tbody.innerHTML = '';
 
-        if (!list.lenght) {
+        if (!list.length) {
             status.textContent = 'No hay usuarios para mostrar.';
             return;
         }
 
-        status.textContent = `Usuarios: ${list.lenght}`;
+        status.textContent = `Usuarios: ${list.length}`;
         
         for (const u of list) {
-            const rolObj = firstOrSelf(u.roles);
-            const empObj = firstOrSelf(u.empleados);
-            const depObj = firstOrSelf(empObj?.departamentos);
 
-            const rol = rolObj?.nombre ?? '';
-            const emp = empObj ? `${empObj.nombre ?? ''} ${empObj.ap ?? ''} ${empObj.am ?? ''}`.trim() : '';
-            const dep = depObj?.nombre ?? '';
+            const rol = u.rol?.nombre_rol ?? ''; 
+            const emp = u.nombre_completo ?? '';
+            const dep = u.departamento?.nombre_departamento ?? '';
             const tr = document.createElement('tr');
 
             tr.innerHTML = `
@@ -64,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch('/api/usuarios',{
                 headers: {
-                    'Accept': 'applicaction/json',
+                    'Accept': 'application/json',
                     'Authorization': 'Bearer' + token
                 }
             });
@@ -93,14 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!q) return render(users);
 
         const filtered = users.filter(u => {
-            const rolObj = firstOrSelf(u.roles);
-            const empObj = firstOrSelf(u.empleados);
-            const depObj = firstOrSelf(empObj?.departamentos);
 
-            const rol = normalize(rolObj?.nombre);
-            const usuario = normalize(u.usuario);
-            const emp = normalize(empObj ? `${empObj.nombre} ${empObj.ap} ${empObj.am}` : '');
-            const dep = normalize(depObj?.nombre);
+            const rol = normalize(u.rol?.nombre_rol);
+            const usuario = normalize(u.email);
+            const emp = normalize(u.nombre_completo);
+            const dep = normalize(u.departamento?.nombre_departamento);
 
             return usuario.includes(q) || rol.includes(q) || emp.includes(q) || dep.includes(q);
         });
@@ -158,11 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const res = await fetch(`api/usuarios/${id}/rehash`, {
+                const res = await fetch(`/api/usuarios/${id}/rehash`, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
-                        'Content-TYpe': 'applicaion/json',
+                        'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + token
                     },
                     body: JSON.stringify({contrasena: nueva.trim()})
@@ -185,9 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     logoutBtn.addEventListener('click', async () => {
         try{
-            await fetch('api/logout', {
+            await fetch('/api/logout', {
                 method: 'POST',
-                headers:{'Accept': 'application/json', 'Authorization': 'Bearer' + token }
+                headers:{'Accept': 'application/json', 'Authorization': 'Bearer ' + token }
             });
         } catch (_) {}
         

@@ -25,9 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const me = await res.json();
     // Ajusta según lo que devuelva tu /api/me
-    const nombre = me?.empleado
-        ? `${me.usuario.nombre_completo}`
-        : (me?.usuario ?? 'Usuario');
+    const nombre = me?.nombre_completo ?? me?.email ?? 'Usuario';
 
     status.textContent = `Bienvenido/a: ${nombre}`;
 

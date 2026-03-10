@@ -12,7 +12,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/departamentos',[DepartamentosController::class, 'indexx']);
+    Route::get('/departamentos',[DepartamentosController::class, 'index']);
     Route::get('/roles',[RolesController::class,'index']);
     Route::post('/usuarios/{usuario}/rehash',[UsuarioController::class,'rehashPassword']);
     

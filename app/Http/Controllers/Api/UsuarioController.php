@@ -72,13 +72,13 @@ class UsuarioController extends Controller
             'contrasena' => ['required', 'string', 'min:6'],
         ]);
 
-        $usuario->contrasena = Hash::make($data['contrasena']);
+        $usuario->password = Hash::make($data['contrasena']);
         $usuario->save();
 
         return response()-> json([
             'message' => 'Contraseña actualizada (hasheada) correctamente.',
-            'id' => $usuario->id,
-            'usuario' => $usuario->usuario,
+            'id' => $usuario->id_usuario,
+            'usuario' => $usuario->email,
         ]);
     }
 }
