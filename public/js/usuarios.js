@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const status = document.getElementById('status');
-    const tbody = document.querySelector('#userTable tbody');
+    const tbody = document.querySelector('#usersTable tbody');
     const refreshBtn = document.getElementById('refreshBtn');
     const logoutBtn = document.getElementById('logoutBtn');
     const search = document.getElementById('search');
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const tr = document.createElement('tr');
 
             tr.innerHTML = `
-                <td>${u.id ?? ''}</td>
-                <td>${u.usuario ?? ''}</td>
+                <td>${u.id_usuario ?? ''}</td>
+                <td>${u.email ?? ''}</td>
                 <td>${rol}</td>
                 <td>${emp}</td>
                 <td>${dep}</td>
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await fetch('/api/usuarios',{
                 headers: {
                     'Accept': 'application/json',
-                    'Authorization': 'Bearer' + token
+                    'Authorization': 'Bearer ' + token
                 }
             });
 

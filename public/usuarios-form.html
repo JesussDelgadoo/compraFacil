@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Usuario | compraFacil</title>
+    <link rel="stylesheet" href="/css/usuarios.css">
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div>
+                <h2 id="title">Nuevo usuario</h2>
+                <p class="subtitle" id="subtitle">Captura los datos del usuario</p>
+            </div>
+            <div class="topbar-actions">
+                <a class="btn" href="/usuarios.html">Volver</a>
+            </div>
+        </div>
+
+        <section class="card">
+            <div class="card-body">
+                <form id="userForm" class="form">
+                    <div class="grid2">
+                        <div>
+                            <label>Nombre Completo</label>
+                            <input id="nombre_completo" class="input" type="text" maxlength="100" required>
+                        </div>
+                        <div>
+                            <label>Correo Electrónico</label>
+                            <input id="email" class="input" type="email" maxlength="100" required>
+                        </div>
+                        <div>
+                            <label>Rol</label>
+                            <select id="id_rol" class="input" required>
+                                <option value="">Cargando roles...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Departamento</label>
+                            <select id="id_departamento" class="input" required>
+                                <option value="">Cargando departamentos...</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <label>Contraseña <span class="hint">(en editar es opcional)</span></label>
+                        <input id="password" class="input" type="password" minlength="6">
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-primary" type="submit" id="saveBtn">Guardar</button>
+                        <p id="msg" class="status"></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="/js/usuarios-form.js"></script>
+</body>
+</html>
