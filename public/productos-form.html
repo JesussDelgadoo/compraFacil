@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Producto | compraFacil</title>
+    <link rel="stylesheet" href="/css/usuarios.css"> 
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div>
+                <h2 id="title">Nuevo producto</h2>
+                <p class="subtitle" id="subtitle">Captura los datos del producto</p>
+            </div>
+            <div class="topbar-actions">
+                <a class="btn" href="/productos.html">Volver</a>
+            </div>
+        </div>
+
+        <section class="card">
+            <div class="card-body">
+                <form id="productoForm" class="form">
+                    <div class="grid2">
+                        <div>
+                            <label>SKU (Código)</label>
+                            <input id="sku" class="input" type="text" maxlength="50" required>
+                        </div>
+                        <div>
+                            <label>Nombre del Producto</label>
+                            <input id="nombre" class="input" type="text" maxlength="150" required>
+                        </div>
+                        <div>
+                            <label>Unidad de Medida <span class="hint">(Ej. Pieza, Caja, Litro)</span></label>
+                            <input id="unidad_medida" class="input" type="text" maxlength="50" required>
+                        </div>
+                        <div>
+                            <label>Precio de Referencia <span class="hint">(MXN)</span></label>
+                            <input id="precio_referencia" class="input" type="number" step="0.01" min="0">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <label>Descripción corta</label>
+                        <input id="descripcion" class="input" type="text" maxlength="255">
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-primary" type="submit" id="saveBtn">Guardar</button>
+                        <p id="msg" class="status"></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="/js/productos-form.js"></script>
+</body>
+</html>

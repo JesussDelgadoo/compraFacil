@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Empleado | compraFacil</title>
+    <link rel="stylesheet" href="/css/usuarios.css">
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div>
+                <h2 id="title">Nuevo Empleado</h2>
+                <p class="subtitle" id="subtitle">Asigna un usuario a la plantilla de empleados</p>
+            </div>
+            <div class="topbar-actions">
+                <a class="btn" href="/empleados.html">Volver</a>
+            </div>
+        </div>
+
+        <section class="card">
+            <div class="card-body">
+                <form id="empleadoForm" class="form">
+                    <div class="grid2">
+                        <div>
+                            <label>Usuario a vincular</label>
+                            <select id="id_usuario" class="input" required>
+                                <option value="">Cargando usuarios...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Número de Empleado</label>
+                            <input id="numero_empleado" class="input" type="text" maxlength="20">
+                        </div>
+                        <div>
+                            <label>Puesto Específico</label>
+                            <input id="puesto_especifico" class="input" type="text" maxlength="100">
+                        </div>
+                        <div>
+                            <label>Fecha de Contratación</label>
+                            <input id="fecha_contratacion" class="input" type="date">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-primary" type="submit" id="saveBtn">Guardar</button>
+                        <p id="msg" class="status"></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="/js/empleados-form.js"></script>
+</body>
+</html>

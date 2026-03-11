@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Requisición | compraFacil</title>
+    <link rel="stylesheet" href="/css/usuarios.css">
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div>
+                <h2 id="title">Nueva Requisición</h2>
+                <p class="subtitle" id="subtitle">Captura los datos de la solicitud de compra</p>
+            </div>
+            <div class="topbar-actions">
+                <a class="btn" href="/requisiciones.html">Volver</a>
+            </div>
+        </div>
+
+        <section class="card">
+            <div class="card-body">
+                <form id="requisicionForm" class="form">
+                    <div class="grid2">
+                        <div>
+                            <label>Folio</label>
+                            <input id="folio" class="input" type="text" maxlength="20" placeholder="Ej. SOL-001" required>
+                        </div>
+                        <div>
+                            <label>Solicitante (Usuario)</label>
+                            <select id="id_usuario" class="input" required>
+                                <option value="">Cargando usuarios...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Estado de la Solicitud</label>
+                            <select id="estado" class="input" required>
+                                <option value="Borrador">Borrador</option>
+                                <option value="Enviada">Enviada</option>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Aprobada">Aprobada</option>
+                                <option value="Rechazada">Rechazada</option>
+                                <option value="Cancelada">Cancelada</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Fecha <span class="hint">(Opcional, si lo dejas vacío usa la fecha actual)</span></label>
+                            <input id="fecha" class="input" type="datetime-local">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <label>Motivo de la Compra</label>
+                        <input id="motivo" class="input" type="text" maxlength="255" placeholder="¿Para qué se necesita?" required>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-primary" type="submit" id="saveBtn">Guardar</button>
+                        <p id="msg" class="status"></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="/js/requisiciones-form.js"></script>
+</body>
+</html>
