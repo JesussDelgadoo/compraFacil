@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Productos | compraFacil</title>
+    <link rel="stylesheet" href="/css/usuarios.css">
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div>
+                <h2>Módulo Productos</h2>
+                <p class="subtitle">Catálogo de productos disponibles</p>
+            </div>
+            <div class="topbar-actions">
+                <a class="btn" href="/dashboard.html">Volver</a>
+                <a class="btn btn-primary" href="/productos-form.html">+ Nuevo Producto</a>
+                <button id="logoutBtn" class="btn btn-danger" type="button">Cerrar Sesión</button>
+            </div>
+        </div>
+        <section class="card">
+            <div class="card-body">
+                <div class="toolbar">
+                    <input id="search" class="input" type="text" placeholder="Buscar por nombre o SKU..."/>
+                    <button id="refreshBtn" class="btn">Actualizar</button>
+                </div>
+
+                <p id="status" class="status">Cargando...</p>
+
+                <div class="table-wrap">
+                    <table class="table" id="productosTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>SKU</th>
+                                <th>Nombre</th>
+                                <th>Medida</th>
+                                <th>Precio Ref.</th>
+                                <th style="width:180px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="/js/productos.js"></script>
+</body>
+</html>

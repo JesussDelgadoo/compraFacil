@@ -41,9 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${dep}</td>
                 <td>
                     <div class="actions">
-                        <button class="btn btn-small" data-action="edit" data-id="${u.id}">Editar</button>
-                        <button class="btn btn-small" data-action="encrypt" data-id="${u.id}">Encriptar</button>
-                        <button class="btn btn-small btn-danger" data-action="delete" data-id="${u.id}">Eliminar</button>
+                        <button class="btn btn-small" data-action="edit" data-id="${u.id_usuario}">Editar</button>
+                        <button class="btn btn-small" data-action="encrypt" data-id="${u.id_usuario}">Encriptar</button>
+                        <button class="btn btn-small btn-danger" data-action="delete" data-id="${u.id_usuario}">Eliminar</button>
                     </div>
                 </td>
             `;
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = btn.dataset.id;
 
         if (action === 'edit') {
-            window.location.href = `/usuario-form.html?id=${encodeURIComponent(id)}`;
+            window.location.href = `/usuarios-form.html?id=${encodeURIComponent(id)}`;
             return;
         }
 

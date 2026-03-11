@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UsuarioController;
 use App\Http\Controllers\Api\EmpleadosController;
 use App\Http\Controllers\Api\DepartamentosController;
 use App\Http\Controllers\Api\RolesController;
+use App\Http\Controllers\Api\ProductosController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -18,4 +19,5 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::apiResource('usuarios', UsuarioController::class);
     Route::apiResource('empleados', EmpleadosController::class);
+    Route::apiResource('productos',ProductosController::class);
 });
