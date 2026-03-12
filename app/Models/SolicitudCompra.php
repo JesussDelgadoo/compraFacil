@@ -10,10 +10,15 @@ class SolicitudCompra extends Model
     protected $primaryKey = 'id_solicitud';
     public $timestamps = false;
 
-    protected $fillable = ['folio', 'fecha', 'motivo', 'estado', 'id_usuario'];
+    protected $fillable = ['folio', 'fecha', 'fecha_estimada', 'motivo', 'estado', 'id_usuario', 'id_producto', 'cantidad'];
 
     public function usuario()
     {
         return $this->belongsTo(Usuarios::class, 'id_usuario', 'id_usuario');
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Productos::class, 'id_producto', 'id_producto');
     }
 }

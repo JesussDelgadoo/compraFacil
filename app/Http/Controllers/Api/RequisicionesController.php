@@ -13,7 +13,7 @@ class RequisicionesController extends Controller
      */
     public function index()
     {
-        return SolicitudCompra::with('usuario')->orderBy('id_solicitud', 'desc')->get();
+        return SolicitudCompra::with(['usuario', 'producto'])->orderBy('id_solicitud', 'desc')->get();
     }
 
     /**
@@ -22,19 +22,24 @@ class RequisicionesController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'folio' => 'required|string|max:20',
             'fecha' => 'nullable|date',
+            'fecha_estimada' => 'nullable|date',
             'motivo' => 'required|string|max:255',
             'estado' => 'nullable|string|max:50',
-            'id_usuario' => 'required|exists:usuarios,id_usuario'
+            'id_usuario' => 'required|exists:usuarios,id_usuario',
+            'id_producto' => 'required|exists:productos,id_producto',
+            'cantidad' => 'required|integer|min:1'
         ]);
+
+        $ultimoId = SolicitudCompra::max('id_solicitud') ?? 0;
+        $data['folio'] = 'SOL-' . str_pad($ultimoId + 1, 3, '0', STR_PAD_LEFT);
 
         if(empty($data['estado'])) {
             $data['estado'] = 'Borrador';
         }
 
         $requisicion = SolicitudCompra::create($data);
-        return response()->json($requisicion->load('usuario'), 201);
+        return response()->json($requisicion->load(['usuario', 'producto']), 201);
     }
 
     /**

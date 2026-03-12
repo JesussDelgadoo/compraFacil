@@ -11,7 +11,7 @@
         <div class="topbar">
             <div>
                 <h2 id="title">Nueva Requisición</h2>
-                <p class="subtitle" id="subtitle">Captura los datos de la solicitud de compra</p>
+                <p class="subtitle" id="subtitle">Solicitud de compra a futuro</p>
             </div>
             <div class="topbar-actions">
                 <a class="btn" href="/requisiciones.html">Volver</a>
@@ -24,7 +24,7 @@
                     <div class="grid2">
                         <div>
                             <label>Folio</label>
-                            <input id="folio" class="input" type="text" maxlength="20" placeholder="Ej. SOL-001" required>
+                            <input id="folio" class="input" type="text" placeholder="Se genera automáticamente" readonly>
                         </div>
                         <div>
                             <label>Solicitante (Usuario)</label>
@@ -32,6 +32,27 @@
                                 <option value="">Cargando usuarios...</option>
                             </select>
                         </div>
+                        
+                        <div>
+                            <label>Producto Solicitado</label>
+                            <select id="id_producto" class="input" required>
+                                <option value="">Cargando productos...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Cantidad requerida</label>
+                            <input id="cantidad" class="input" type="number" min="1" value="1" required>
+                        </div>
+
+                        <div>
+                            <label>Fecha de Solicitud</label>
+                            <input id="fecha" class="input" type="datetime-local" readonly title="Se genera automáticamente">
+                        </div>
+                        <div>
+                            <label>Fecha Estimada de Llegada</label>
+                            <input id="fecha_estimada" class="input" type="date">
+                        </div>
+
                         <div>
                             <label>Estado de la Solicitud</label>
                             <select id="estado" class="input" required>
@@ -40,22 +61,16 @@
                                 <option value="Pendiente">Pendiente</option>
                                 <option value="Aprobada">Aprobada</option>
                                 <option value="Rechazada">Rechazada</option>
-                                <option value="Cancelada">Cancelada</option>
                             </select>
                         </div>
                         <div>
-                            <label>Fecha <span class="hint">(Opcional, si lo dejas vacío usa la fecha actual)</span></label>
-                            <input id="fecha" class="input" type="datetime-local">
+                            <label>Motivo de la Compra</label>
+                            <input id="motivo" class="input" type="text" maxlength="255" placeholder="Justificación de la solicitud" required>
                         </div>
-                    </div>
-                    
-                    <div style="margin-top: 15px;">
-                        <label>Motivo de la Compra</label>
-                        <input id="motivo" class="input" type="text" maxlength="255" placeholder="¿Para qué se necesita?" required>
                     </div>
 
                     <div style="margin-top: 20px;">
-                        <button class="btn btn-primary" type="submit" id="saveBtn">Guardar</button>
+                        <button class="btn btn-primary" type="submit" id="saveBtn">Guardar Requisición</button>
                         <p id="msg" class="status"></p>
                     </div>
                 </form>
