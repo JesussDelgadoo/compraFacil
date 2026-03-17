@@ -63,7 +63,8 @@ class RequisicionesController extends Controller
             'fecha' => 'nullable|date',
             'motivo' => 'sometimes|required|string|max:255',
             'estado' => 'nullable|string|max:50',
-            'id_usuario' => 'sometimes|required|exists:usuarios,id_usuario'
+            'id_usuario' => 'sometimes|required|exists:usuarios,id_usuario',
+            'id_producto' => 'sometimes',
         ]);
 
         $requisicion->update($data);
