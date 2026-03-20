@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded',async ()=>{
     const kpiRechazadas = document.getElementById('kpiRechazadas');
 
     const chartSubtitle = document.getElementById('chartSubtitle');
-    const chartContainer = document.getElementById('chartContainer');
-
+    const chartContainer = document.getElementById('reqPieChart');
     // Google Charts
     google.charts.load('current', {packages: ['corechart'] });
 
