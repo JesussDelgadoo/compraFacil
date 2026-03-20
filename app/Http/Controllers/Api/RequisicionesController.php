@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SolicitudCompra;
+use DB;
 
 class RequisicionesController extends Controller
 {
@@ -79,5 +80,28 @@ class RequisicionesController extends Controller
         $requisicion = SolicitudCompra::findOrFail($id);
         $requisicion->delete();
         return response()->noContent();
+    }
+
+    public function resumen()
+    {
+        $rows = DB::table('solicitudes_compra')
+            ->select('estado', DB::raw('COUNT(*) as total'))
+            ->groupBy('estado')
+            ->get()
+            ->keyBy('estado');
+        
+        $aprobados  = (int) ($rows['Aprobada']->total ?? 0);
+        $rechazadas = (int) ($rows['Rechazada']->total ?? 0);
+        $enProceso  = (int) ($rows['Pendiente']->total ?? 0) 
+                    + (int) ($rows['Enviada']->total ?? 0) 
+                    + (int) ($rows['Borrador']->total ?? 0);
+        $total = $enProceso + $aprobados + $rechazadas;
+
+        return response()->json([
+            'total'      => $total,
+            'enProceso'  => $enProceso,
+            'aprobados'  => $aprobados,
+            'rechazadas' => $rechazadas,
+        ]);
     }
 }

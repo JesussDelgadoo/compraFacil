@@ -7,20 +7,87 @@
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
-    <div class="topbar">
-        <h2>Panel principal</h2>
-        <button id="logoutBtn" class="btn btn--danger" type="button">Cerrar sesión</button>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand__mark">CF</div>
+                <div>
+                    <div class="brand__name">compraFacil</div>
+                    <div class="brand__tag">Panel Principal</div>
+                </div>
+            </div>
+
+            <nav class="menu">
+                <a class="menu__item" href="/usuarios.html">Usuarios</a>
+                <a class="menu__item" href="/empleados.html">Empleados</a>
+                <a class="menu__item" href="/productos.html">Productos</a>
+                <a class="menu__item" href="/requisiciones.html">Requisiciones</a>
+            </nav>
+            
+            <div class="sidebar__footer">
+                <button id="logoutBtn" class="btn btn-danger" type="button">Cerrar sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main">
+            <header class="main__header">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p class="muted" id="welcome">Cargando usuario...</p>
+                </div>
+            </header>
+
+            <!-- Cards -->
+
+            <section class="cards">
+                <div class="kpi kpi--process">
+                    <div class="kpi__title">En proceso</div>
+                    <div class="kpi__value" id="kpiProceso">0</div>
+                </div>
+
+                <div class="kpi kpi--approved">
+                    <div class="kpi__title">Aprobadas</div>
+                    <div class="kpi__value" id="kpiAprobadas">0</div>
+                </div>
+
+                <div class="kpi kpi--rejected">
+                    <div class="kpi__title">Rechazadas</div>
+                    <div class="kpi__value" id="kpiRechazadas">0</div>
+                </div>
+            </section>
+
+            <!-- Chart -->
+            <section class="panel">
+                <div class="panel__head">
+                    <h2>Requisiciones por estatus</h2>
+                    <p class="muted" id="chartSubtitle">Cargando resumen...</p>
+                </div>
+
+                <div id="reqPieChart" class="chart"></div>
+            </section>
+        
+            <section class="panel">
+                <div class="panel__head">
+                    <h2>Aprobadas por Departamento</h2>
+                    <p class="muted" id="depSubtitle">Cargando...</p>
+                </div>
+                <div id="reqPieChart" class="chart"></div>
+            </section>
+
+            <section class="panel">
+                <div class="panel__head">
+                    <h2>Aprobadas por mes (2026)</h2>
+                    <p class="muted" id="mesSubtitle">Cargando...</p>
+                </div>
+                <div id="mesChart" class="chart"></div>
+            </section>
+        </main>
     </div>
 
-    <div class="card">  
-        <p class="msg" id="status">Cargando usuario...</p>
-        <div class="grid">
-            <a class="tile" href="/usuarios.html" id="btnUsuarios">Usuarios</a>
-            <a class="tile" href="/empleados.html" id="btnEmpleados">Empleados</a>
-            <a class="tile" href="/productos.html" id="btnProductos">Productos</a>
-            <a class="tile" href="/requisiciones.html" id="btnRequisiciones">Requisiciones</a>
-        </div>
-    </div>
+    <!-- Google Charts -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="/js/dashboard.js"></script>
 </body>
 </html>

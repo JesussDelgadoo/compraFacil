@@ -17,6 +17,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/departamentos',[DepartamentosController::class, 'index']);
     Route::get('/roles',[RolesController::class,'index']);
     Route::post('/usuarios/{usuario}/rehash',[UsuarioController::class,'rehashPassword']);
+    Route::get('/requisiciones/resumen',[RequisicionesController::class,'resumen']);
 
     Route::apiResource('usuarios', UsuarioController::class);
     Route::apiResource('empleados', EmpleadosController::class);
