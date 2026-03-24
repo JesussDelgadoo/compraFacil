@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/usuarios/{usuario}/rehash',[UsuarioController::class,'rehashPassword']);
     Route::get('/requisiciones/resumen',[RequisicionesController::class,'resumen']);
     Route::get('/requisiciones/aprobadas-por-departamento', [RequisicionesController::class, 'aprobadasPorDepartamento']);
+    Route::get('/requisiciones/aprobadas-mes', [RequisicionesController::class, 'aprobadasPorMes']);
 
     Route::apiResource('usuarios', UsuarioController::class);
     Route::apiResource('empleados', EmpleadosController::class);

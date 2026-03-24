@@ -133,6 +133,44 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         });
     }
 
+    // Tercera Gráfica
+    async function loadAprobadasPorMes2026() {
+        const subtitle = document.getElementById('mesSubtitle');
+        const container = document.getElementById('mesChart');
+        if (!container) return;
+
+        subtitle.textContent = 'Cargando...';
+
+        const r = await fetchJSON('/api/requisiciones/aprobadas-mes');
+        if (!r.ok) {
+            subtitle.textContent = r.data?.message || 'No se pudo cargar.';
+            return;
+        }
+
+        const data = r.data?.data ?? [];
+        const total = rows.reduce((acc, x) => acc + Number(x.total || 0), 0);
+
+        subtitle.textContent = `Año 2026 | Total aprobadas: ${total}`;
+
+        const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+
+        google.charts.setOnLoadCallback(() => {
+            const table = google.visualization.arrayToDataTable([
+                ['Mes', 'Aprobadas'],
+                ...data.map(x => [meses[(x.mes || 1) - 1], Number(x.total)])
+            ]);
+
+            const options = {
+                legend: { position: 'none' },
+                chartArea: { width: '90%', height: '75%' },
+                hAxis: { title: 'Meses (2026)' },
+                vAxis: { title: 'Cantidad Aprobada', minValue: 0 },
+            };
+
+            new google.visualization.ColumnChart(container).draw(table, options);
+        });
+    }
+
     logoutBtn.addEventListener('click', async () => {
         try {
             await fetch('/api/logout', {
@@ -151,5 +189,5 @@ document.addEventListener('DOMContentLoaded',async ()=>{
     await loadMe();
     await loadResumen();
     await loadAprobadasPorDepartamento();
-    // await loadAprobadasPorMes2026();
+    await loadAprobadasPorMes2026();
 })

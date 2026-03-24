@@ -118,4 +118,30 @@ class RequisicionesController extends Controller
         
         return response()->json($rows);
     }
+
+    public function aprobadasPorMes()
+    {
+        $rows = DB::table('solicitudes_compra as s')
+            ->where('s.estado', 'Aprobada')
+            ->whereYear('s.fecha', 2026)
+            ->select(DB::raw('MONTH(s.fecha) as mes'), DB::raw('COUNT(*) as total'))
+            ->groupBy('mes')
+            ->orderBy('mes', 'asc')
+            ->get()
+            ->keyBy('mes');
+
+        // Devolvemos los 12 meses, aunque esten en 0
+        $out = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $out[] = [
+                'mes' => $m,
+                'total' => (int)($rows[$m]->total ?? 0),
+            ];
+        }
+
+        return response()->json([
+            'anio' => 2026,
+            'data' => $out,
+        ]);
+    }
 }
