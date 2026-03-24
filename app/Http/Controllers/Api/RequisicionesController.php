@@ -104,4 +104,18 @@ class RequisicionesController extends Controller
             'rechazadas' => $rechazadas,
         ]);
     }
+
+    public function aprobadasPorDepartamento()
+    {
+        $rows = DB::table('solicitudes_compra as s')
+            ->join('usuarios as u', 'u.id_usuario', '=', 's.id_usuario')
+            ->join('departamentos as d', 'd.id_departamento', '=', 'u.id_departamento')
+            ->where('s.estado', 'Aprobada')
+            ->select('d.nombre_departamento as departamento', DB::raw('COUNT(*) as total'))
+            ->groupBy('d.nombre_departamento')
+            ->orderByDesc('total')
+            ->get();
+        
+        return response()->json($rows);
+    }
 }

@@ -91,6 +91,48 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         });
     }
 
+    //Segunda Grafica
+    async function loadAprobadasPorDepartamento() {
+        const subtitle = document.getElementById('depSubtitle')
+        const container = document.getElementById('depPieChart')
+        if (!container) return;
+
+        subtitle.textContent = 'Cargando...';
+
+        const r = await fetchJSON('/api/requisiciones/aprobadas-por-departamento');
+        if (!r.ok) {
+            subtitle.textContent = r.data?.message || 'No se pudo cargar.';
+            return;
+        }
+
+        const rows = Array.isArray(r.data) ? r.data : [];
+        const total = rows.reduce((acc, x) => acc + Number(x.total || 0), 0);
+
+        if (!total) {
+            subtitle.textContent = 'No hay requisiciones aprobadas.';
+            container.innerHTML = '';
+            return;
+        }
+
+        subtitle.textContent = `Total aprobadas: ${total}`;
+
+        google.charts.setOnLoadCallback(() => {
+            const table = google.visualization.arrayToDataTable([
+                ['Departamento', 'Aprobadas'],
+                ...rows.map(x => [x.departamento, Number(x.total)])
+            ]);
+
+            const options = {
+                legend: {position: 'none'},
+                chartArea: {width: '88%', height: '75%' },
+                hAxis: { title: 'Departamento' },
+                vAxis: { title: 'Aprobdas', minValue: 0}
+            };
+
+            new google.visualization.ColumnChart(container).draw(table,options);
+        });
+    }
+
     logoutBtn.addEventListener('click', async () => {
         try {
             await fetch('/api/logout', {
@@ -108,6 +150,6 @@ document.addEventListener('DOMContentLoaded',async ()=>{
 
     await loadMe();
     await loadResumen();
-    // await loadAprobadasPorDepartamento();
+    await loadAprobadasPorDepartamento();
     // await loadAprobadasPorMes2026();
 })
