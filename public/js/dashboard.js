@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded',async ()=>{
             const options = {
                 legend: { position: 'none' },
                 chartArea: { width: '90%', height: '75%' },
-                hAxis: { title: 'Meses (2026)' },
-                vAxis: { title: 'Cantidad Aprobada', minValue: 0 },
+                hAxis: { slantedText: false },
+                vAxis: { minValue: 0 },
             };
 
             new google.visualization.ColumnChart(container).draw(table, options);
