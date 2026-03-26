@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         status.textContent = `Requisiciones: ${list.length}`;
-        
+
         for (const req of list) {
             const nombreSolicitante = req.usuario?.nombre_completo ?? 'Desconocido';
-            
+
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td><strong>${req.folio ?? ''}</strong></td>
@@ -129,9 +129,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Error: ' + err.message);
             }
         }
+
     });
 
     refreshBtn.addEventListener('click', fetchRequisiciones);
+
+    const btnPDF = document.getElementById('btnPDF');
+
+    if (btnPDF) {
+        btnPDF.addEventListener('click', async () => {
+            const element = document.getElementById('pdfContent');
+            if (!element) return;
+
+            const buttons = document.querySelectorAll('.no-print');
+            buttons.forEach(b => b.computedStyleMap.display = 'none');
+
+            const opt = {
+                margin: 10,
+                filename: `Requisicion_${window.currentRequisicion?.folio}.pdf` ,
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait'}
+            };
+
+            await html2pdf().set(opt).from(element).save();
+
+            buttons.forEach(b => b.computedStyleMap.display = 'flex');
+        })
+    }
 
     logoutBtn.addEventListener('click', async () => {
         try {
@@ -140,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Accept': 'application/json', 'Authorization': 'Bearer ' + token }
             });
         } catch (_) {}
-        
+
         localStorage.removeItem('token');
         window.location.href = '/login.html';
     });

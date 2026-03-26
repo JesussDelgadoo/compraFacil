@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         }
 
         const data = r.data?.data ?? [];
-        const total = rows.reduce((acc, x) => acc + Number(x.total || 0), 0);
+        const total = data.reduce((acc, x) => acc + Number(x.total || 0), 0);
 
         subtitle.textContent = `Año 2026 | Total aprobadas: ${total}`;
 

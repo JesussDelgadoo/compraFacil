@@ -13,8 +13,12 @@
                 <h2>Módulo Requisiciones</h2>
                 <p class="subtitle">Control de Solicitudes de Compra</p>
             </div>
+
+
             <div class="topbar-actions">
                 <a class="btn" href="/dashboard.html">Volver</a>
+                <button id="btnPDF" class="btn btn-primary" type="button">Exp PDF</button>
+                <button id="btnExportExcel" class="btn btn-primary" type="button">Exp Excel</button>
                 <a class="btn btn-primary" href="/requisiciones-form.html">+ Nueva Requisición</a>
                 <button id="logoutBtn" class="btn btn-danger" type="button">Cerrar Sesión</button>
             </div>
@@ -44,6 +48,8 @@
             </div>
         </section>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style/dist/xlsx.bundle.js"></script>
     <script src="/js/requisiciones.js"></script>
 </body>
 </html>

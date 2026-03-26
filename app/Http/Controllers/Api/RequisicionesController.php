@@ -48,7 +48,7 @@ class RequisicionesController extends Controller
      */
     public function show($id)
     {
-        $requisicion = SolicitudCompra::with('usuario')->findOrFail($id);
+        $requisicion = SolicitudCompra::with(['usuario', 'detalles.producto'])->findOrFail($id);
         return response()->json($requisicion);
     }
 
@@ -58,7 +58,7 @@ class RequisicionesController extends Controller
     public function update(Request $request, $id)
     {
         $requisicion = SolicitudCompra::findOrFail($id);
-        
+
         $data = $request->validate([
             'folio' => 'sometimes|required|string|max:20',
             'fecha' => 'nullable|date',
@@ -89,11 +89,11 @@ class RequisicionesController extends Controller
             ->groupBy('estado')
             ->get()
             ->keyBy('estado');
-        
+
         $aprobados  = (int) ($rows['Aprobada']->total ?? 0);
         $rechazadas = (int) ($rows['Rechazada']->total ?? 0);
-        $enProceso  = (int) ($rows['Pendiente']->total ?? 0) 
-                    + (int) ($rows['Enviada']->total ?? 0) 
+        $enProceso  = (int) ($rows['Pendiente']->total ?? 0)
+                    + (int) ($rows['Enviada']->total ?? 0)
                     + (int) ($rows['Borrador']->total ?? 0);
         $total = $enProceso + $aprobados + $rechazadas;
 
@@ -115,7 +115,7 @@ class RequisicionesController extends Controller
             ->groupBy('d.nombre_departamento')
             ->orderByDesc('total')
             ->get();
-        
+
         return response()->json($rows);
     }
 
