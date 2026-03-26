@@ -160,11 +160,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Boton Exportar Excel
-    const btnExcel = document.getElementById('btnExcenl');
+    const btnExcel = document.getElementById('btnExcel');
 
     if (btnExcel) {
         btnExcel.addEventListener('click', async () => {
+            if (requisiciones.length === 0) {
+                alert('No hay datos para exportar.');
+                return;
+            }
 
+            const data = [];
+
+            data.push(['Módulo Requisiciones']);
+            data.push([]);
+
+            data.push(['Folio', 'Fecha', 'Motivo', 'Solicitante', 'Estado']);
+
+            requisiciones.forEach(req => {
+                data.push([
+                    req.folio || 'N/A',
+                    req.fecha || '',
+                    req.motivo || '',
+                    req.usuario?.nombre_completo || 'Desconocido',
+                    req.estado || 'Borrador'
+                ]);
+            });
+
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+
+            worksheet['!merges'] = [
+                { s: { r: 0, c: 0 }, e: { r: 0, c: 1 } }
+            ];
+
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Requisiciones");
+
+            worksheet['!cols'] = [
+                { wch: 12 }, // Folio
+                { wch: 18 }, // Fecha
+                { wch: 45 }, // Motivo
+                { wch: 25 }, // Solicitante
+                { wch: 15 }  // Estado
+            ];
+
+            XLSX.writeFile(workbook, 'Lista_Requisiciones_General.xlsx');
         })
     }
 
