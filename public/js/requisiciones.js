@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     refreshBtn.addEventListener('click', fetchRequisiciones);
 
+    // Boton Exportar PDF
     const btnPDF = document.getElementById('btnPDF');
 
     if (btnPDF) {
@@ -146,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const opt = {
                 margin: 10,
-                filename: `Requisicion_${window.currentRequisicion?.folio}.pdf` ,
+                filename: 'Lista_Requisiciones_General.pdf' ,
                 image: { type: 'jpeg', quality: 1 },
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait'}
@@ -155,6 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
             await html2pdf().set(opt).from(element).save();
 
             buttons.forEach(b => b.computedStyleMap.display = 'flex');
+        });
+    }
+
+    // Boton Exportar Excel
+    const btnExcel = document.getElementById('btnExcenl');
+
+    if (btnExcel) {
+        btnExcel.addEventListener('click', async () => {
+
         })
     }
 

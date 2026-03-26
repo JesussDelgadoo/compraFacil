@@ -17,8 +17,8 @@
 
             <div class="topbar-actions">
                 <a class="btn" href="/dashboard.html">Volver</a>
-                <button id="btnPDF" class="btn btn-primary" type="button">Exp PDF</button>
-                <button id="btnExportExcel" class="btn btn-primary" type="button">Exp Excel</button>
+                <button id="btnPDF" class="btn btn-primary" type="button">Exportar PDF</button>
+                <button id="btnExcel" class="btn btn-primary" type="button">Exportar Excel</button>
                 <a class="btn btn-primary" href="/requisiciones-form.html">+ Nueva Requisición</a>
                 <button id="logoutBtn" class="btn btn-danger" type="button">Cerrar Sesión</button>
             </div>
@@ -30,7 +30,7 @@
                     <button id="refreshBtn" class="btn">Actualizar</button>
                 </div>
                 <p id="status" class="status">Cargando...</p>
-                <div class="table-wrap">
+                <div class="table-wrap" id="pdfContent">
                     <table class="table" id="requisicionesTable">
                         <thead>
                             <tr>
